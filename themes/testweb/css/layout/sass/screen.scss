@@ -8,6 +8,9 @@
 // sass
 $font-stack:    Helvetica, sans-serif;
 $orange-color: #f39501;
+$light-gray: #f6f6f6;
+
+
 
 @mixin breakpoint($class) {
   @if $class == xs {
@@ -97,11 +100,30 @@ $orange-color: #f39501;
   font-size: 1.5em;
 }
 
+p{
+  color: $light-gray;
+  font-size: 1.5em;
+  font-weight: 300;
+  line-height: 1.5em;
+}
+
 h1{
   color: $orange-color;
   font-size: 4em;
   font-weight: 300;
   margin-bottom: 60px;
+}
+
+h1#main-title{
+  color: #000;
+  width: 100%;
+  height: 1em;
+  font-size: 5em;
+  text-align: center;
+  text-transform: uppercase;
+  top: auto;
+  bottom:100px;
+
 }
 
 h2{
@@ -161,6 +183,27 @@ html * {
 	position: fixed;
 	left: 0px;
 	top: 0px;
+}
+
+.absolute-center{
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  margin: auto;
+}
+
+.absolute-full{
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+
 }
 
 #main-wrapper{
@@ -715,5 +758,123 @@ html * {
 
 
 // home
+
+
+// singlepage
+
+.main-image{
+  position: relative;
+  height: 50vh;
+  margin-top: 100px;
+  overflow: hidden;
+        img{
+          max-width: 80%;
+          height: auto;
+        }
+}
+
+#main-image{
+  background: url(../../../images/whiteMain.png) no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-color: $orange-color;
+  top: unquote("calc(-50vh + 100px)");
+}
+
+
+.main-content{
+  background-color:#000;
+  margin-top: -5px;
+  margin-bottom: 100px;
+  padding-top:100px;
+  padding-bottom:100px;
+      h1{
+        text-align: center
+      }
+      p{
+        text-align: justify;
+      }
+
+      #portfolio-clienti .touchcarousel-wrapper{
+        margin-left: 0px;
+      }
+
+      #portfolio-clienti{
+        height: 200px;
+        padding-top: 0px;
+        margin-bottom: 100px;
+      }
+
+      #portfolio-clienti img {
+        margin-right: 0px;
+      }
+
+      #portfolio-clienti .touchcarousel-item{
+        margin-right: 0px;
+      }
+
+      .figcaption{
+        display: none;
+      }
+
+}
+
+.casehistory{
+
+      h2{
+        color: #fff;
+        font-size: 1.8em;
+        margin-bottom: 10px;
+        font-weight: 400;
+      }
+}
+
+.titleHistory{
+  border-bottom: solid 4px $orange-color;
+  margin-bottom: 15px;
+}
+
+a.openhistory{
+  height: 30px;
+  width: 30px;
+  display: block;
+  position: relative;
+  text-align: right;
+  font-size: 2em;
+  pointer: cursor;
+}
+
+a.openhistory:before {
+    content: "\f13a";
+    font-family: FontAwesome;
+    right:0px;
+    position:absolute;
+    top:0;
+    color: $orange-color
+ }
+
+a.openhistory.active:before {
+    content: "\f139";
+  
+}
+
+.history-content{
+  display: none;
+
+    img{
+      width: 100%;
+      height: auto;
+      margin-bottom: 30px;
+      padding: 2px;
+      background-color:$orange-color;
+    }
+}
+
+// singlepage
+
+
+
+
+
 
 

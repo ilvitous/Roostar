@@ -17,7 +17,7 @@ Template Name: Home Page
 
 		<div class="row">
 
-			<div class="colonna-5" id="comunicazione" data-categoria='comnunicazione'>
+			<div class="colonna-5" id="comunicazione" data-categoria='27'>
 				<div class="black"></div>
 				<div class="hover">
 					<div class="categoria-title-container">

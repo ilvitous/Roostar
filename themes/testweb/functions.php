@@ -27,6 +27,9 @@ function theme_load_styles() {
     wp_enqueue_style('touchcarousel', get_template_directory_uri() . '/js/touchcarousel/touchcarousel.css');
     wp_enqueue_style('black-and-white-skin', get_template_directory_uri() . '/js/touchcarousel/black-and-white-skin/black-and-white-skin.css');
 
+    wp_enqueue_style('photoswipe', get_template_directory_uri() . '/js/photoswipe/photoswipe.css');
+    wp_enqueue_style('photoswipe-skin', get_template_directory_uri() . '/js/photoswipe/default-skin/default-skin.css');
+
 
 	}
 }
@@ -75,7 +78,17 @@ function enqueue_scripts() {
 	  
 
     wp_register_script( 'queryloader2', THEME_DIR . '/js/queryloader2.min.js', array( 'jquery' ), '1', false );
-    wp_enqueue_script( 'queryloader2' );        
+    wp_enqueue_script( 'queryloader2' );      
+
+
+    wp_register_script( 'photoswipe', THEME_DIR . '/js/photoswipe/photoswipe.min.js', array( 'jquery' ), '1', false );
+    wp_enqueue_script( 'photoswipe' );  
+
+    wp_register_script( 'photoswipe-ui', THEME_DIR . '/js/photoswipe/photoswipe-ui-default.min.js', array( 'jquery' ), '1', false );
+    wp_enqueue_script( 'photoswipe-ui' );   
+
+    wp_register_script( 'gallery', THEME_DIR . '/js/gallery.js', array( 'jquery' ), '1', false );
+    wp_enqueue_script( 'gallery' );          
 
 
 
@@ -149,7 +162,7 @@ function gallery_attachments( $attachments )
     'label'         => 'Gallery',
 
     // all post types to utilize (string|array)
-    'post_type'     => array('page'),
+    'post_type'     => array('page', 'casehistory'),
 
     // meta box position (string) (normal, side or advanced)
     'position'      => 'normal',
@@ -196,6 +209,10 @@ add_action( 'after_setup_theme', 'baw_theme_setup' );
 function baw_theme_setup() {
 	  add_image_size( 'square-thumb', 400, 400, true );
 
+    add_image_size( 'best-thumb', 9999, 200);
+
+    add_image_size( 'full-uploaad', 2000, 2000);
+
 }
 
 
@@ -240,6 +257,63 @@ function my_custom_post_portfolio() {
 add_action( 'init', 'my_custom_post_portfolio' );
 
 
+function my_custom_post_casehistory() {
+  $labels = array(
+    'name'               => _x( 'Case History', 'post type general name' ),
+    'singular_name'      => _x( 'Case History', 'post type singular name' ),
+    'add_new'            => _x( 'Add new Case History', 'Work' ),
+    'add_new_item'       => __( 'Add new Case History' ),
+    'edit_item'          => __( 'Edit Case History' ),
+    'new_item'           => __( 'New Case History' ),
+    'all_items'          => __( 'All Case History' ),
+    'view_item'          => __( 'View Case History' ),
+    'search_items'       => __( 'Search Case History' ),
+    'not_found'          => __( 'No Case History found' ),
+    'not_found_in_trash' => __( 'No Case History found in trash' ), 
+    'parent_item_colon'  => '',
+    'menu_name'          => 'Case History',
+
+  );
+  $args = array(
+    'labels'        => $labels,
+    'description'   => 'Case History',
+    'public'        => true,
+    'publicly_queryable'   => false,
+    'menu_position' => 2,
+    'supports'      => array( 'title','thumbnail', 'editor'),
+    'has_archive'   => 'true',
+    'menu_icon' => get_bloginfo('template_directory').'/images/portfolioCP.png',
+  
+
+
+          
+
+  );
+  register_post_type( 'casehistory', $args ); 
+}
+
+add_action( 'init', 'my_custom_post_casehistory' );
+
+
+function create_news_taxonomies() {
+    register_taxonomy(
+        'history-tax',
+        array('casehistory'),
+        array(
+            'labels' => array(
+                'name' => 'Categorie',
+                'add_new_item' => 'Aggiungi nuova categoria',
+                'new_item_name' => "Nuova categoria informazione"
+            ),
+            'show_ui' => true,
+            'show_tagcloud' => false,
+            'hierarchical' => true
+        )
+    );
+}
+add_action( 'init', 'create_news_taxonomies' );
+
+
 /*CUSTOM POST*/
 
 
@@ -262,8 +336,6 @@ function wpt_save_events_meta($post_id, $post) {
 	// We'll put it into an array to make it easier to loop though.
 	
 	
-	$events_meta['_video'] = $_POST['_video'];
-	$events_meta['_linkWebsite'] = $_POST['_linkWebsite'];
 
 	
 	// Add values of $events_meta as custom fields

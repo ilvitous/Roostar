@@ -95,7 +95,7 @@
 <header>
 <div class="container-header fixed header Fixed">
   
-  <a href=""><img src="<? echo THEME_DIR; ?>/images/mainLogo.png" alt=""></a>
+  <a href="<? echo BLOG_URL ?>"><img src="<? echo THEME_DIR; ?>/images/mainLogo.png" alt=""></a>
 
 
 <!-- bottone menu -->
@@ -127,7 +127,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
         <ul class="tk-brandon-grotesque">
-          <a href=""><li>Comunicazione</li></a> 
+          <a href="index.php?page_id=27"><li>Comunicazione</li></a> 
           <a href=""><li>Eventi</li></a> 
           <a href=""><li>Allestimenti</li></a> 
           <a href=""><li>Vetrinistica</li></a> 

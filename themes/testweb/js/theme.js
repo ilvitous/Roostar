@@ -13,9 +13,21 @@ $j(document ).ready(function() {
 
 	var menuOpen = false
 
-	
+	 $j(".openhistory").click(function(e) {
+	 	
+	 	e.preventDefault();	
+
+	 	$j(this).toggleClass("active");
+
+	 	var history = $j(this).attr("href");
+
+	 	$j("#"+history).slideToggle( "slow", function() {
+    // Animation complete.
+  		});
 
 
+
+	  });
          
    	$j("#mobile-menu").mmenu({
          // options
@@ -45,7 +57,7 @@ $j(document ).ready(function() {
 
 	e.preventDefault;
 	var $categoria = $j(this).attr('data-categoria');
-	alert($categoria);
+	window.location.href = "index.php?page_id="+$categoria;
 
 	});	
 
@@ -55,6 +67,11 @@ $j(document ).ready(function() {
 
 	$j(".videoCaption").css("height", height);
 	
+
+	var heightContent = $j("#page-content").height()
+
+
+	$j(".caption-content").css("height", heightContent);
 	
 	
 });
